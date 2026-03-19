@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 18:36:26 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/12/16 18:36:57 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/03/19 13:57:14 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ t_node *stack_min(t_node *stack)
     return min;
 }
 
-void free_stack(t_node **stack)
+void	free_stack(t_node **stack)
 {
-    t_node *tmp;
+	t_node	*tmp;
+	t_node	*current;
 
-    while (stack && *stack)
-    {
-        tmp = (*stack)->next;
-        free(*stack);
-        *stack = tmp;
-    }
+	if (!stack || !*stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	*stack = NULL;
 }

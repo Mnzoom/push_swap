@@ -1,73 +1,72 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/12/16 17:45:11 by cn-goie           #+#    #+#              #
-#    Updated: 2025/12/16 17:49:01 by cn-goie          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
+# --- IDENTITÉ ---
 NAME        = push_swap
-CHECKER     = checker
 
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
-
-INCLUDES    = -I. -Ilibft
-
+# --- DOSSIERS ---
 LIBFT_DIR   = libft
 LIBFT       = $(LIBFT_DIR)/libft.a
+SRC_DIR     = src
+OBJ_DIR     = obj
+INC_DIR     = .
 
-SRC_DIR     = srcs
-BONUS_DIR   = bonus
+# --- SOURCES ---
+# On liste les fichiers en utilisant le chemin relatif depuis SRC_DIR
+SRCS_FILES  = main.c \
+              utils.c \
+              parsing/parsing.c \
+              stack/create_node.c \
+              stack/stack_utils.c \
+              operations/sa.c operations/sb.c operations/ss.c \
+              operations/pa.c operations/pb.c \
+              operations/ra.c operations/rb.c operations/rr.c \
+              operations/rra.c operations/rrb.c operations/rrr.c \
+              sort/radix.c \
+              sort/sort_three.c \
+              sort/sort_utils.c \
+              sort/sort_five.c \
 
-SRCS        = \
-    $(SRC_DIR)/main.c \
-    $(SRC_DIR)/parsing.c \
-    $(SRC_DIR)/stack_init.c \
-    $(SRC_DIR)/operations/sa.c \
-    $(SRC_DIR)/operations/sb.c \
-    $(SRC_DIR)/operations/ss.c \
-    $(SRC_DIR)/operations/pa.c \
-    $(SRC_DIR)/operations/pb.c \
-    $(SRC_DIR)/operations/ra.c \
-    $(SRC_DIR)/operations/rb.c \
-    $(SRC_DIR)/operations/rr.c \
-    $(SRC_DIR)/operations/rra.c \
-    $(SRC_DIR)/operations/rrb.c \
-    $(SRC_DIR)/operations/rrr.c \
-    $(SRC_DIR)/algo/lis.c \
-    $(SRC_DIR)/algo/cost.c \
-    $(SRC_DIR)/algo/sort.c
+# Transformation des .c en .o dans le dossier OBJ_DIR
+SRCS        = $(addprefix $(SRC_DIR)/, $(SRCS_FILES))
+OBJS        = $(SRCS_FILES:%.c=$(OBJ_DIR)/%.o)
 
-BONUS_SRCS  = \
-    $(BONUS_DIR)/checker.c
+# --- COMPILATION ---
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
+RM          = rm -rf
 
-OBJS        = $(SRCS:.c=.o)
-BONUS_OBJS  = $(BONUS_SRCS:.c=.o)
+# --- COULEURS ---
+GREEN       = \033[0;32m
+BLUE        = \033[0;34m
+RESET       = \033[0m
 
-all: $(NAME)
+# --- RÈGLES ---
 
+all: $(LIBFT) $(NAME)
+
+# Compilation de la libft
 $(LIBFT):
-    make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT) $(OBJS)
-    $(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+# Linkage final
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)✓ push_swap compilé avec succès !$(RESET)"
 
-bonus: $(LIBFT) $(BONUS_OBJS)
-    $(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) -o $(CHECKER)
+# Compilation des objets avec création auto des dossiers
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@echo "$(BLUE)Compiling: $<$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-    rm -f $(OBJS) $(BONUS_OBJS)
-    make -C $(LIBFT_DIR) clean
+	@$(RM) $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
+	@echo "$(BLUE)Objets supprimés.$(RESET)"
 
 fclean: clean
-    rm -f $(NAME) $(CHECKER)
-    make -C $(LIBFT_DIR) fclean
+	@$(RM) $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@echo "$(BLUE)Exécutable et libft.a supprimés.$(RESET)"
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

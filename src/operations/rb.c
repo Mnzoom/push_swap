@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa.c                                               :+:      :+:    :+:   */
+/*   rb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/17 03:55:47 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/03/19 13:24:26 by clementngoi      ###   ########.fr       */
+/*   Created: 2026/03/19 13:28:47 by clementngoi       #+#    #+#             */
+/*   Updated: 2026/03/19 13:30:03 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_node **stack_a, t_node **stack_b)
+void	rb(t_node **stack_b)
 {
-	t_node	*tmp;
-	if (!stack_b || !*stack_b)
+	t_node	*first;
+	t_node	*last;
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
-	tmp = *stack_b;
-	*stack_b = (*stack_b)->next;
-	tmp->next = *stack_a;
-	*stack_a = tmp;
-	write(1, "pa\n", 3);
+	first = *stack_b;
+	last = *stack_b;
+	while (last->next)
+		last = last->next;
+	*stack_b = first->next;
+	first->next = NULL;
+	last->next = first;
+	write(1, "rb\n", 3);
 }

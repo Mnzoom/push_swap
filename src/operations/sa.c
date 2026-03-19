@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 03:27:57 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/12/17 03:47:58 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/03/19 13:30:22 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void    sa(t_node **stack_a)
 {
     t_node  *first;
     t_node  *second;
-
     if (!stack_a || !*stack_a || !(*stack_a)->next)
         return;
     

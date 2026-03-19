@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 03:35:33 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/12/17 03:48:02 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/03/19 13:30:25 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void    sb(t_node **stack_b)
 {
     t_node  *first;
     t_node  *second;
-
     if (!stack_b || !*stack_b || !(*stack_b)->next)
         return;
 

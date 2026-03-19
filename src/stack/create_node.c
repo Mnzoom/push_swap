@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:51:20 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/12/16 18:36:05 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/03/19 14:12:13 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_node *create_node(int value)
 {
     t_node *new = malloc(sizeof(t_node));
     if (!new)
-        exit_error; 
+        exit_error(NULL, NULL); 
 
     new->value = value;
     new->index = -1;  

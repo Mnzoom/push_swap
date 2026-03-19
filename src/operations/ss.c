@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ss.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 03:49:12 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/12/17 03:55:12 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/03/19 14:13:02 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void    ss(t_node **stack)
 {
     t_node  *first;
     t_node  *second;
-
     if (!stack || !*stack || !(*stack)->next)
         return;
-    first = stack;
+    first = *stack;
     second = first->next;
 
     first->next = second->next;
