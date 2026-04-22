@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix.c                                            :+:      :+:    :+:   */
+/*   butterfly.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:47:55 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/19 16:34:58 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/22 15:20:53 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,29 @@ void    push_back_to_a(t_node **stack_a, t_node **stack_b)
         max_pos = get_target_pos(stack_b, size - 1);
         
         if (max_pos <= size / 2)
+        {
             while (max_pos-- > 0)
-                rb(stack_b);
+            {
+                if ((*stack_b)-> index == size - 2)
+                    pa(stack_a, stack_b);
+                else
+                    rb(stack_b);
+            }
+        }
         else
         {
             max_pos = size - max_pos;
             while (max_pos-- > 0)
-                rrb(stack_b);
+            {
+                if ((*stack_b)->index == size - 2)
+                    pa(stack_a, stack_b);
+                else
+                    rrb(stack_b);
+            }
         }
         pa(stack_a, stack_b);
+        if (stack_size(*stack_a) > 1 && (*stack_a)->index > (*stack_a)->next->index)
+            sa(stack_a);
     }
 }
 
@@ -60,8 +74,10 @@ void    big_sort(t_node **stack_a, t_node **stack_b)
 
     i = 0;
     size = stack_size(*stack_a);
-    if (size <= 100) range = 15;
-    else range = 35;
+    if (size <= 100) 
+        range = 14;
+    else 
+        range = 35;
 
     while (*stack_a)
     {

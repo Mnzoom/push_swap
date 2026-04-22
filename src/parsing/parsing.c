@@ -6,7 +6,7 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:51:17 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/03/19 13:35:51 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/03/20 14:06:52 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void    parse_and_fill_stack(int ac, char **av, t_node **stack_a)
     while (i < ac)
     {
         split = ft_split(av[i], ' ');
-        if (!split) exit_error(stack_a, NULL);
+        if (!split) 
+            exit_error(stack_a, NULL);
+        if (av[i][0] == '\0' || split[0] == NULL)
+        {
+            ft_free_split(split);
+            exit_error(stack_a, NULL);
+        }
         j = 0;
         while (split[j])
         {
