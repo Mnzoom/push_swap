@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:43:34 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/19 13:45:25 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:40:21 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	set_index(t_node *stack_a)
 	t_node	*current;
 	t_node	*compare;
 	int		index;
+
 	current = stack_a;
 	while (current)
 	{
@@ -59,4 +60,21 @@ int	get_distance(t_node *stack, int index)
 		stack = stack->next;
 	}
 	return (distance);
+}
+
+int	get_target_pos(t_node **stack, int target_index)
+{
+	t_node	*tmp;
+	int		pos;
+
+	pos = 0;
+	tmp = *stack;
+	while (tmp)
+	{
+		if (tmp->index == target_index)
+			return (pos);
+		tmp = tmp->next;
+		pos++;
+	}
+	return (0);
 }

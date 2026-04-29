@@ -3,64 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 18:28:42 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/03/19 14:07:55 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:47:54 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_free_split(char **split)
+void	ft_free_split(char **split)
 {
-    int i = 0;
+	int	i;
 
-    if (!split)
-        return;
-    while (split[i])
-    {
-        free(split[i]);
-        i++;
-    }
-    free(split);
+	i = 0;
+	if (!split)
+		return ;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
 
-void exit_error(t_node **stack, char **split)
+void	exit_error(t_node **stack, char **split)
 {
-    if (stack && *stack)
-        free_stack(stack);
-    if (split)
-        ft_free_split(split);
-    write(2, "Error\n", 6);
-    exit(1);
+	if (stack && *stack)
+		free_stack(stack);
+	if (split)
+		ft_free_split(split);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
-int  is_number(char *str)
+int	is_number(char *str)
 {
-    int i = 0;
-    if (str[i] == '-' || str[i] == '+')
-        i++;
-    if (!str[i]) 
-        return (0);
-    while (str[i])
-    {
-        if (!ft_isdigit(str[i]))
-            return (0);
-        i++;
-    }
-    return (1);
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int is_duplicate(t_node *stack, int value)
+int	is_duplicate(t_node *stack, int value)
 {
-    while (stack)
-    {
-        if (stack->value == value)
-            return (1);
-        stack = stack->next;
-    }
-    return (0);
+	while (stack)
+	{
+		if (stack->value == value)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
 }
 
 long	ft_atol(const char *str)

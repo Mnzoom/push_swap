@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:28:47 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/19 13:30:03 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:16:48 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	rb(t_node **stack_b)
 {
 	t_node	*first;
 	t_node	*last;
+
 	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	first = *stack_b;

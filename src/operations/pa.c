@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 03:55:47 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/03/19 13:24:26 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:16:34 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	pa(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*tmp;
+
 	if (!stack_b || !*stack_b)
 		return ;
 	tmp = *stack_b;

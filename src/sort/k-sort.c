@@ -1,99 +1,94 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   butterfly.c                                        :+:      :+:    :+:   */
+/*   k-sort.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:47:55 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/22 15:20:53 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:38:47 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int get_target_pos(t_node **stack, int target_index)
+static void	rotate_and_check(t_node **a, t_node **b, int target, int dir)
 {
-    t_node  *tmp;
-    int     pos;
+	int	pos;
 
-    pos = 0;
-    tmp = *stack;
-    while (tmp)
-    {
-        if (tmp->index == target_index)
-            return (pos);
-        tmp = tmp->next;
-        pos++;
-    }
-    return (0);
+	pos = get_target_pos(b, target);
+	if (dir == 0)
+		pos = stack_size(*b) - pos;
+	while (pos-- > 0)
+	{
+		if ((*b)->index == target - 1)
+			pa(a, b);
+		else if (dir == 1)
+			rb(b);
+		else
+			rrb(b);
+	}
 }
 
-void    push_back_to_a(t_node **stack_a, t_node **stack_b)
+static void	prepare_push_b(t_node **stack_a, t_node **stack_b, int size)
 {
-    int size;
-    int max_pos;
+	int	max_pos;
 
-    while (*stack_b)
-    {
-        size = stack_size(*stack_b);
-        max_pos = get_target_pos(stack_b, size - 1);
-        
-        if (max_pos <= size / 2)
-        {
-            while (max_pos-- > 0)
-            {
-                if ((*stack_b)-> index == size - 2)
-                    pa(stack_a, stack_b);
-                else
-                    rb(stack_b);
-            }
-        }
-        else
-        {
-            max_pos = size - max_pos;
-            while (max_pos-- > 0)
-            {
-                if ((*stack_b)->index == size - 2)
-                    pa(stack_a, stack_b);
-                else
-                    rrb(stack_b);
-            }
-        }
-        pa(stack_a, stack_b);
-        if (stack_size(*stack_a) > 1 && (*stack_a)->index > (*stack_a)->next->index)
-            sa(stack_a);
-    }
+	max_pos = get_target_pos(stack_b, size - 1);
+	if (max_pos <= size / 2)
+		rotate_and_check(stack_a, stack_b, size - 1, 1);
+	else
+		rotate_and_check(stack_a, stack_b, size - 1, 0);
 }
 
-void    big_sort(t_node **stack_a, t_node **stack_b)
+void	push_back_to_a(t_node **stack_a, t_node **stack_b)
 {
-    int i;
-    int range;
-    int size;
+	int	size;
 
-    i = 0;
-    size = stack_size(*stack_a);
-    if (size <= 100) 
-        range = 14;
-    else 
-        range = 35;
+	while (*stack_b)
+	{
+		size = stack_size(*stack_b);
+		prepare_push_b(stack_a, stack_b, size);
+		pa(stack_a, stack_b);
+		if (stack_size(*stack_a) > 1
+			&& (*stack_a)->index > (*stack_a)->next->index)
+			sa(stack_a);
+	}
+}
 
-    while (*stack_a)
-    {
-        if ((*stack_a)->index <= i)
-        {
-            pb(stack_a, stack_b);
-            rb(stack_b);
-            i++;
-        }
-        else if ((*stack_a)->index <= i + range)
-        {
-            pb(stack_a, stack_b);
-            i++;
-        }
-        else
-            ra(stack_a);
-    }
-    push_back_to_a(stack_a, stack_b);
+static void	execute_big_sort(t_node **a, t_node **b, int range)
+{
+	int	i;
+
+	i = 0;
+	while (*a)
+	{
+		if ((*a)->index <= i)
+		{
+			pb(a, b);
+			rb(b);
+			i++;
+		}
+		else if ((*a)->index <= i + range)
+		{
+			pb(a, b);
+			i++;
+		}
+		else
+			ra(a);
+	}
+}
+
+void	big_sort(t_node **stack_a, t_node **stack_b)
+{
+	int	size;
+	int	range;
+
+	size = stack_size(*stack_a);
+	if (size <= 100)
+		range = 15;
+	else
+		range = 35;
+	execute_big_sort(stack_a, stack_b, range);
+	push_back_to_a(stack_a, stack_b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:26:00 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/19 13:30:10 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:16:40 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	pb(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*tmp;
+
 	if (!stack_a || !*stack_a)
 		return ;
 	tmp = *stack_a;

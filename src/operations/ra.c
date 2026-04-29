@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ra.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:28:35 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/19 13:30:06 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:16:45 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ra(t_node **stack_a)
 {
 	t_node	*first;
 	t_node	*last;
+
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 	first = *stack_a;

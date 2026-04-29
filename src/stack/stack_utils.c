@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 18:36:26 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/03/19 13:57:14 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:21:31 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-t_node *stack_min(t_node *stack)
+t_node	*stack_min(t_node *stack)
 {
-    t_node *min;
+	t_node	*min;
 
-    if (!stack)
-        return (NULL);
-    min = stack;
-    while (stack)
-    {
-        if (stack->value < min->value)
-            min = stack;
-        stack = stack->next;
-    }
-    return min;
+	if (!stack)
+		return (NULL);
+	min = stack;
+	while (stack)
+	{
+		if (stack->value < min->value)
+			min = stack;
+		stack = stack->next;
+	}
+	return (min);
 }
 
 void	free_stack(t_node **stack)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rrb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:31:06 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/19 13:31:12 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/29 16:17:04 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	rrb(t_node **stack_b)
 {
 	t_node	*prev;
 	t_node	*last;
+
 	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	prev = NULL;
