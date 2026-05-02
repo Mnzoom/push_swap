@@ -6,53 +6,39 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:47:55 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/29 16:38:47 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/05/02 18:26:35 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	rotate_and_check(t_node **a, t_node **b, int target, int dir)
+static void	rotate_only(t_node **b, int pos, int dir, int b_size)
 {
-	int	pos;
-
-	pos = get_target_pos(b, target);
 	if (dir == 0)
-		pos = stack_size(*b) - pos;
+		pos = b_size - pos;
 	while (pos-- > 0)
 	{
-		if ((*b)->index == target - 1)
-			pa(a, b);
-		else if (dir == 1)
+		if (dir == 1)
 			rb(b);
 		else
 			rrb(b);
 	}
 }
 
-static void	prepare_push_b(t_node **stack_a, t_node **stack_b, int size)
-{
-	int	max_pos;
-
-	max_pos = get_target_pos(stack_b, size - 1);
-	if (max_pos <= size / 2)
-		rotate_and_check(stack_a, stack_b, size - 1, 1);
-	else
-		rotate_and_check(stack_a, stack_b, size - 1, 0);
-}
-
-void	push_back_to_a(t_node **stack_a, t_node **stack_b)
+void	push_back_to_a(t_node **a, t_node **b)
 {
 	int	size;
+	int	max_pos;
 
-	while (*stack_b)
+	while (*b)
 	{
-		size = stack_size(*stack_b);
-		prepare_push_b(stack_a, stack_b, size);
-		pa(stack_a, stack_b);
-		if (stack_size(*stack_a) > 1
-			&& (*stack_a)->index > (*stack_a)->next->index)
-			sa(stack_a);
+		size = stack_size(*b);
+		max_pos = get_target_pos(b, size - 1);
+		if (max_pos <= size / 2)
+			rotate_only(b, max_pos, 1, size);
+		else
+			rotate_only(b, max_pos, 0, size);
+		pa(a, b);
 	}
 }
 
